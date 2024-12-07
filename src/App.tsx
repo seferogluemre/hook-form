@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from 'zot'
 
 
@@ -17,7 +17,7 @@ export default function App() {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>({
-    resolver: yupResolver(schema),
+    resolver: zodResolver(schema),
   })
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
 
@@ -27,10 +27,8 @@ export default function App() {
       <input {...register("firstName")} />
       <p>{errors.firstName?.message}</p>
 
-
       <input {...register("age")} />
       <p>{errors.age?.message}</p>
-
 
       <input type="submit" />
     </form>
